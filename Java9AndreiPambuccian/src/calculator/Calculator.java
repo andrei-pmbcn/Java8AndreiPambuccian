@@ -10,5 +10,25 @@ package calculator;
  * @author andrei
  */
 public class Calculator {
+    int rezultat = 0;
     
+    public int aduna (int a, int b) {
+        rezultat = a + b;
+        return rezultat;
+    }
+    
+    public int scade (int a, int b) {
+        rezultat = a - b;
+        return rezultat;
+    }
+    
+    public int inmulteste (int a, int b) {
+        rezultat = a * b;
+        return rezultat;
+    }
+    
+    public int imparte (int a, int b) {
+        rezultat = a / b;
+        return rezultat;
+    }
 }
