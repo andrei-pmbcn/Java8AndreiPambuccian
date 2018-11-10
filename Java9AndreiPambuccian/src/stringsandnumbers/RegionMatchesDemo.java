@@ -19,12 +19,14 @@ public class RegionMatchesDemo {
         for (int i = 0; i <= (searchMeLength - findMeLength); i++) 
             {
                 if (searchMe.regionMatches(i, findMe, 0, findMeLength)) {
-                foundIt = true;
-                System.out.println(searchMe.substring(i, i + findMeLength));
-                break;
+                    foundIt = true;
+                    System.out.println(searchMe.substring(i, i + findMeLength));
+                    break;
             }
         }
-        if (!foundIt)
-        System.out.println("No match found.");
+        if (!foundIt) {
+            System.out.println("No match found.");
+        }
+    }
 }
     

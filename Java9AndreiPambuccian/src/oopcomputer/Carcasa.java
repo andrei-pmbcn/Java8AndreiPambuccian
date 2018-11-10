@@ -3,27 +3,57 @@
  */
 package oopcomputer;
 
+import java.util.HashMap;
+
 /**
  *
  * @author gheor
  */
 public class Carcasa {
     
-    public Ecran ecran = new Ecran();
-    public Buton buton0 = new Buton('0');
-    public Buton buton1 = new Buton('1');
-    public Buton buton2 = new Buton('2');
-    public Buton buton3 = new Buton('3');
-    public Buton buton4 = new Buton('4');
-    public Buton buton5 = new Buton('5');
-    public Buton buton6 = new Buton('6');
-    public Buton buton7 = new Buton('7');
-    public Buton buton8 = new Buton('8');
-    public Buton buton9 = new Buton('9');
-    public Buton butonPlus = new Buton('+');
-    public Buton butonMinus = new Buton('-');
-    public Buton butonOri = new Buton('*');
-    public Buton butonImpartire = new Buton('/');
-    public Buton butonEgal = new Buton('=');
-    private ALU alu = new ALU();      
+    private Ecran ecran = new Ecran(this);
+    private HashMap<Character, Buton> butoane;
+    private ALU alu = new ALU(this);      
+
+    public Carcasa() {
+        this.butoane = new HashMap();
+        
+        for (Character operand : this.alu.CIFRE) {
+            this.butoane.put(operand, new Buton(operand, this, true));
+        }
+        
+        for (Character operator : this.alu.OPERATORI) {
+            this.butoane.put(operator, new Buton(operator, this, false));
+        }
+
+        this.butoane.put('=', new Buton('=', this, false));        
+    }
+    
+    public Ecran getEcran() {
+        return this.ecran;
+    }
+
+    public void setEcran(Ecran ecran) {
+        this.ecran = ecran;
+    }
+
+    public HashMap<Character, Buton> getButoane() {
+        return this.butoane;
+    }
+   
+    public void setButoane(HashMap<Character, Buton> butoane) {
+        this.butoane = butoane;
+    }
+
+    public Buton getButon(Character simbol) {
+        return this.butoane.get(simbol);
+    }
+        
+    public ALU getAlu() {
+        return this.alu;
+    }
+
+    public void setAlu(ALU alu) {
+        this.alu = alu;
+    }
 }

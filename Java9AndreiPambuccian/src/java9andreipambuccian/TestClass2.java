@@ -4,16 +4,11 @@
  * and open the template in the editor.
  */
 package java9andreipambuccian;
-        
-//Function, Consumer, 
 
 /**
  *
  * @author andrei
-*/
-
-public class Java9AndreiPambuccian {
-    public static void main(String[] args) {
-        
-    }
+ */
+public class TestClass2 {
+    
 }
