@@ -28,7 +28,7 @@ public class TestCalculator {
         // Apasam butoane pana apare =
         calculator.getButon('=').apasa();
         // afisam rezultatul
-        
+        calculator.getEcran().printAfisaj();
     }
     
 }
