@@ -1,0 +1,8 @@
+Hello Gheorghe
+ENVIRONMENT VARIABLE CONGRATS:null
+ENVIRONMENT VARIABLE HI:null
+Hello (to arguments): Gheorghe
+Hello Maria
+ENVIRONMENT VARIABLE CONGRATS:null
+ENVIRONMENT VARIABLE HI:null
+Hello (to arguments): Maria

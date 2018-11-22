@@ -24,7 +24,7 @@ public class Ecran {
         this.afisaj = afisaj;
     }
     
-    public void printAfisaj(String afisaj) {
+    public void printAfisaj() {
         System.out.println(this.afisaj);
     }
     

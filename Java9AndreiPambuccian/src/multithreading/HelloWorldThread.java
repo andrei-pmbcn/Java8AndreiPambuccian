@@ -3,20 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package java9andreipambuccian;
+package multithreading;
 
 /**
  *
  * @author andrei
  */
-public class TestClass {
-    protected static class NestedTestClass {
-        public static int x = 1;
-    }
-
-    NestedTestClass c;
-    
-    TestClass() {
-        c = new NestedTestClass();
+public class HelloWorldThread extends Thread {
+    public void run() {
+        System.out.println("Hello World!");
     }    
 }
