@@ -5,6 +5,7 @@
  */
 package calculator2;
 
+import java.io.ByteArrayInputStream;
 import java.util.Scanner;
 
 /**
@@ -17,14 +18,14 @@ public class ComplexCalculator extends SimpleCalculator {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("please introduce your first number.");
-        int x = sc.nextInt();
+        double x = sc.nextDouble();
 
         System.out.println("please introduce the operator.");
         String operator = sc.next();
 
         try {
             System.out.println("please introduce your second number.");
-            int y = sc.nextInt();
+            double y = sc.nextDouble();
             this.performOperation(x, y, operator);
         } catch (Exception e) {
             this.performOperation(x, operator);
@@ -50,7 +51,7 @@ public class ComplexCalculator extends SimpleCalculator {
 
     }
 
-    public double add(double x) {
+    public double add(double x) {      
         this.result += x;
         return this.result;
     }

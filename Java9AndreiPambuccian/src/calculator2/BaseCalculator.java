@@ -18,13 +18,13 @@ public abstract class BaseCalculator {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("please introduce your first number.");
-        int x = sc.nextInt();
+        double x = sc.nextDouble();
 
         System.out.println("please introduce the operator.");
         String operator = sc.next();
 
         System.out.println("please introduce your second number.");
-        int y = sc.nextInt();
+        double y = sc.nextDouble();
 
         this.performOperation(x, y, operator);
 

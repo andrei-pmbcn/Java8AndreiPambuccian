@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<!-- the logical structure of a document does not contain data -->
+
+<cursuri>
+    <curs denumire="HTML 5">
+        <students>20</students>
+        <zi>sambata</zi>
+    </curs>
+    <curs denumire="CSS 3">
+        <students>20</students>
+        <zi>vineri</zi>
+    </curs>
+    <curs denumire="Java">
+        <students>20</students>
+        <zi>luni</zi>
+    </curs>
+</cursuri>
