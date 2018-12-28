@@ -6,13 +6,10 @@ and open the template in the editor.
 -->
 
 
-    //TABLE USERS:
-    //COLUMN USERNAME VARCHAR(25) UNIQUE NONULL PRIMARYKEY, 
-    //COLUMN PASSWORD VARCHAR(25) NONULL
-
-<root>
+<users>
     <user>
-        <username></username>
-        <password></password>
+        <id>1</id>
+        <username>DefaultUser</username>
+        <password>password</password>
     </user>
-</root>
+</users>
