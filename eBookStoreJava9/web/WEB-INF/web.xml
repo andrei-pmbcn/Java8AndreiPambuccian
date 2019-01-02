@@ -12,10 +12,19 @@
     
     <servlet>
         <servlet-name>Index</servlet-name>
-        <servlet-class>servlets.Index</servlet-class>
+        <servlet-class>servlets.Index</servlet-class> 
     </servlet>
     <servlet-mapping>
         <servlet-name>Index</servlet-name>
         <url-pattern>/Index</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>AdminUsers</servlet-name>
+        <servlet-class>servlets.AdminUsers</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AdminUsers</servlet-name>
+        <url-pattern>/AdminUsers</url-pattern>
     </servlet-mapping>
 </web-app>

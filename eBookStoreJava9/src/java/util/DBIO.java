@@ -6,11 +6,11 @@
 package util;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -22,24 +22,14 @@ import java.sql.Statement;
 public class DBIO {
     private final String user = "test";
     private final String password = "password";
-    private final String url = "jdbc:derby:bookdb;create=true"; 
+    private final String url = "jdbc:derby://localhost:1527/bookdb;create=true;"; 
     private final String driver = "org.apache.derby.jdbc.ClientDataSource40";
     private final String sqlFilePath = "/home/andrei/NetBeansProjects/Java9AndreiPambuccian/eBookStoreJava9/web/dbdesign/createdb.sql";
     protected Connection connection = null; 
     protected Statement statement = null;
+    protected PreparedStatement pstmnt = null;
     protected ResultSet resultSet = null; 
     protected String query = "";
-    
-    public void connect() {
-        try 
-        {
-            Class driverClass = Class.forName(driver);
-            connection = DriverManager.getConnection(url, user, password);
-            statement = connection.createStatement();
-        } catch (ClassNotFoundException | SQLException ex) {
-            System.out.println(ex);
-        }
-    }
     
     public static void main(String[] args) {
         DBIO dbio = new DBIO();
@@ -55,14 +45,21 @@ public class DBIO {
         
         
     }
+
+    public void connect() {
+        try 
+        {
+            Class driverClass = Class.forName(driver);
+            connection = DriverManager.getConnection(url, user, password);
+            statement = connection.createStatement();
+        } catch (ClassNotFoundException | SQLException ex) {
+            System.out.println(ex);
+        }
+    }
     
     public void createDB() {
         try 
         { 
-            Class driverClass = Class.forName(driver);
-            connection = DriverManager.getConnection(url, user, password);
-            statement = connection.createStatement();
-
             dropTableIfExists("EBOOKS", "EBOOKS_AUTHORS");
             dropTableIfExists("EBOOKS", "EBOOKS_RATINGS_USERS");
             dropTableIfExists("EBOOKS", "EBOOKS");
@@ -100,31 +97,10 @@ public class DBIO {
                 statement.execute(strs[i]);
             }
                         
-        } catch (ClassNotFoundException | SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println(ex);
         }
     }
-/*
-eBook/iBook defined by:
-
-    ISBN EPUB/PDF as primary key (where EPUB is present it will be chosen)
-    List of authors (peers Username, Password)
-    List of ratings (integers from one to five) 
-    Price
-
-            
-Also persistent support in DB will be created for:
-
-    Authenticated and authorised users
-    Archive of all orders (new, in progress, delivered, rejected as status)
-
-
-As reports we need to be able to generate in real time:
-
-    Stocks
-    Delivered and payed (sales)
-    Delivered but not payed 
-*/        
 
     public ResultSet getResultSet() {
         return this.resultSet;
@@ -170,12 +146,47 @@ As reports we need to be able to generate in real time:
             }
         }
     }
+
+    public boolean runPreparedStatement(String query, String... args) {
+        if (query == "") {
+            query = this.query;    
+        }
+        
+        try {
+            pstmnt = connection.prepareStatement(query);
+
+            for(int i = 0; i < args.length; i++) {
+                pstmnt.setString(i + 1, args[i]);
+                System.out.println(args[i]);
+            }
+            return pstmnt.execute();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            return false;
+        }
+    }
     
-    public void listStocks() {
+    public void setAutoCommit(boolean val) {
+        try {
+            connection.setAutoCommit(val);
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void commit() {
+        try {
+            connection.commit();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    public void queryStocks() {
         query = "SELECT ISBN, DENUMIRE, STOCKS FROM EBOOKS.EBOOKS";
     }
   
-    public void listDeliveredPaid() {
+    public void queryDeliveredPaid() {
         query = "SELECT EBOOKS.EBOOKS.ISBN, EBOOKS.EBOOKS.DENUMIRE "
                 + "FROM EBOOKS.EBOOKS INNER JOIN EBOOKS.ORDERS "
                 + "ON EBOOKS.EBOOKS.ISBN = EBOOKS.ORDERS.ID_ISBN "
@@ -183,7 +194,7 @@ As reports we need to be able to generate in real time:
                 + "AND EBOOKS.ORDERS.PAID = TRUE";
     }
 
-    public void listDeliveredUnpaid() {
+    public void queryDeliveredUnpaid() {
         query = "SELECT EBOOKS.EBOOKS.ISBN, EBOOKS.EBOOKS.DENUMIRE "
                 + "FROM EBOOKS.EBOOKS INNER JOIN EBOOKS.ORDERS "
                 + "ON EBOOKS.EBOOKS.ISBN = EBOOKS.ORDERS.ID_ISBN "
@@ -222,6 +233,14 @@ As reports we need to be able to generate in real time:
             }
             catch (Exception ex){System.out.println(ex);}
         }
+        if (pstmnt != null)
+        {
+            try
+            {
+                pstmnt.close();
+            }
+            catch (SQLException ex){System.out.println(ex);}
+        }        
         if (connection != null)
         {
             try

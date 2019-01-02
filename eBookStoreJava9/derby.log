@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Mon Dec 31 15:38:29 EET 2018:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-0168-047c-b6ed-000002daa3b0 
+Wed Jan 02 09:43:17 EET 2019:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446): instance a816c00e-0168-0d84-3aca-000002da1618 
 on database directory /home/andrei/NetBeansProjects/Java9AndreiPambuccian/eBookStoreJava9/bookdb with class loader sun.misc.Launcher$AppClassLoader@659e0bfd 
 Loaded from file:/home/andrei/glassfish-4.1.1/javadb/lib/derby.jar
 java.vendor=Oracle Corporation

@@ -11,8 +11,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-        <link rel="stylesheet" type="text/css" href=".\\css\\ebookstore.css">
+        <title>Index</title>
+        <link rel="stylesheet" type="text/css" href="./css/ebookstore.css">
     </head>
     <body>
         <%--
@@ -28,9 +28,9 @@
         <div class="tablecenteredwithborder">
             <form action="${pageContext.request.contextPath}/Index" method="POST">
                 <div class="grid-container">
-                    <div>Username: </div>
+                    <div class="grid-item">Username: </div>
                     <input class = "inputlarge" type="text" name="authenticationpage_username"></input>
-                    <div>Password: </div>
+                    <div class="grid-item">Password: </div>
                     <input class = "inputlarge" type="password" name="authenticationpage_password"></input>
                 </div>
                 <input type="submit" name="authenticationpage_authenticate" value="Login"></input></td></tr>

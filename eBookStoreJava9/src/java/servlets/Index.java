@@ -66,10 +66,10 @@ public class Index extends HttpServlet {
             session.setAttribute("validUser", true);
             session.setAttribute("actualUser", username);
             session.setAttribute("actualUserRole", role);
-            request.getRequestDispatcher("./eBooksStoreMainPage.jsp").forward(request, response);
+            request.getRequestDispatcher("./records.jsp").forward(request, response);
         } else {
             session.setAttribute("validUser", false);
-            request.getRequestDispatcher("./Index.jsp").forward(request, response);                
+            request.getRequestDispatcher("./index.jsp").forward(request, response);                
         }
 
         dbio.closeAll();
